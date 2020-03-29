@@ -60,7 +60,7 @@ int main(){
 
     else{
 
-      redLED = 0;
+      redLED =0;
 
       greenLED = 1;
 
@@ -71,7 +71,7 @@ int main(){
   float j;
 
   while(1){
-
+    
     for( j=0; j<2; j+=0.05 ){
 
       Aout = 0.5 + 0.5*sin(j*3.14159);
