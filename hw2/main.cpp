@@ -1,18 +1,27 @@
 #include "mbed.h"
 
-Serial pc( USBTX, USBRX );
-AnalogOut Aout(DAC0_OUT);
-AnalogIn Ain(A0);
-DigitalIn  Switch(SW3);
-DigitalOut redLED(LED1);
-DigitalOut greenLED(LED2);
 BusOut display(D6, D7, D9, D10, D11, D5, D4, D8);
+
 char table[3] = {0x3F, 0x06, 0xBF};
-int sample = 128;
+
+DigitalIn  Switch(SW3);
+
+DigitalOut redLED(LED1);
+
+DigitalOut greenLED(LED2);
+
+Serial pc( USBTX, USBRX );
+
+AnalogOut Aout(DAC0_OUT);
+
+AnalogIn Ain(A0);
+
+int sample = 600;
 
 int i;
 
-float ADCdata[128];
+float ADCdata[600];
+
 
 int main(){
 
@@ -33,7 +42,7 @@ int main(){
     wait(0.1);
 
   }
-
+  
   while(1){
 
     if( Switch == 1 ){
@@ -43,7 +52,7 @@ int main(){
       redLED = 1;
 
       display = table[1];
-      
+
       wait(1);
 
       display = table[0];
@@ -51,32 +60,30 @@ int main(){
       wait(1);
 
       display = table[2];
-      
-      wait(1);  
 
-
+      wait(1);
 
     }
 
     else{
 
-      redLED =0;
+      redLED = 0;
 
       greenLED = 1;
 
     }
 
-  }
+  } 
   
   float j;
 
   while(1){
-    
-    for( j=0; j<2; j+=0.05 ){
 
-      Aout = 0.5 + 0.5*sin(j*3.14159);
+    for( j=0; j<2; j+=0.005 ){
 
-      wait(0.001);
+      Aout = 0.5 + 0.5*sin(j*15.7);
+
+      wait(0.0001);
 
     }
 

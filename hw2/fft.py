@@ -7,9 +7,9 @@ import serial
 import time
 
 
-Fs = 128.0;  # sampling rate
+Fs = 600.0;  # sampling rate
 
-Ts = 1.0/Fs;   # sampling interval
+Ts = 1.0/Fs; # sampling interval
 
 t = np.arange(0,1,Ts) # time vector; create Fs samples between 0 and 1.0 sec.
 
@@ -36,7 +36,6 @@ for x in range(0, int(Fs)):
     line=s.readline() # Read an echo string from K66F terminated with '\n'
 
     # print line
-
     y[x] = float(line)
 
 
